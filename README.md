@@ -1,4 +1,4 @@
-# Express-Sequelize-API boilerplate
+# Node Express Sequilize
 This is a simple boilerplate for creating APIs with NodeJs express framework.
 Here API access token encapsulated/encrypted with JWT token based system.
  - Sample API ready for login 
@@ -10,47 +10,17 @@ Here API access token encapsulated/encrypted with JWT token based system.
 ## Getting Started
 You can download this repo or clone using below command. (folder-name will be project folder in which you want to start your project).
 ```
-git clone https://github.com/binitghetiya/express-sequelize-api-boilerplate.git <folder-name>
-```
-or from **Download Zip**
-```
-https://github.com/binitghetiya/express-sequelize-api-boilerplate 
+git clone https://github.com/sainani8897/node-sequilze-test <folder-name>
 ```
 ### Project Setup
-Once you clone or download project go into you folder
-
->now copy **.env.local** file to **.env** file
+ - cd folder-name
+ - now copy **.env.local** file to **.env** file
 
 ### Installing
 ```
 > npm install or yarn install  (this will install all dependent libraries)
 ```
 
-### Database Config Setup
-Create new database (let's say i'm going to use mysql and my database name is **express-sequelize-api**).
-so in my **.env** file will set below parameters.
-```
-DB_HOST=localhost               # database connection host
-DB_USER=root                    # database username
-DB_PASS=secret@123              # database password
-DB_NAME=express-sequelize-api   # database name
-DB_DIALECT=mysql                # database dialect
-DB_PORT=3306                    # database port
-```
-some other inportant parameters/keys in **.env** file
-```
-APP_HOST=localhost      # application host name
-APP_PORT=3000           # application port
-SECRET=secret           # secret key for encrypt/decrypt JWT token
-```
-
-are you going to user google captcha while register? then also add/update in .env 
-```
-IS_GOOGLE_AUTH_ENABLE=true          # enable google captcha
-GOOGLE_CAPTCHA_SECRET_CLIENT=secret
-GOOGLE_CAPTCHA_SECRET_SERVER=secret
-GOOGLE_CAPTCHA_URL=https://www.google.com/recaptcha/api/siteverify
-```
 
 
 ### Migration and Seeders run
@@ -165,12 +135,80 @@ Seeders will create one new client entry in application and 2 users entry one ad
     "data": null
 }
 ```
-### Upcoming update
+
+
+### Get Vechile
 ```
-> suggestions and improvements are most welcome
+> GET : http://localhost:3000/api/vechile   
+> Headers : 
+        x-token (access token)
+> Query:
+       vechileNo: NUMXXX
+
+> Response : 
+{
+    "code": 200,
+    "data": {
+        "vechiles": {
+            "count": 8,
+            "rows": [
+                {
+                    "id": 8,
+                    "vechileNo": "123AP1211",
+                    "currentLocation": "12 12312 12312 ",
+                    "currentLatitude": "123123",
+                    "currentLongitude": "1231231",
+                    "createdAt": "2022-09-09T11:53:06.000Z",
+                    "updatedAt": "2022-09-09T11:53:06.000Z",
+                    "history": [
+                        {
+                            "id": 11,
+                            "location": "12 12312 12312 ",
+                            "latitude": "123123",
+                            "logitude": "1231231",
+                            "vechileId": 8,
+                            "createdAt": "2022-09-09T11:53:06.000Z",
+                            "updatedAt": "2022-09-09T11:53:06.000Z",
+                            "VechileId": 8
+                        }
+                    ]
+                },
+                
+            ]
+        }
+    },
+    "success": true
+}
 ```
-### Privacy
-> For public use anyone can use it
-### Contact 
-* Follow [@me](https://twitter.com/binitghetiya) on Twitter
-* Email <binitlearning@gmail.com>
+### Create/Register Vechile
+```
+> POST : http://localhost:3000/api/vechile   
+> Headers : 
+        x-token (access token)
+> BODY:
+       
+    "vechile_no":"123AP1211",
+    "location":"12 12312 12312 ",
+    "latitude":"123123",
+    "longitude":"1231231",
+    "id":"1",
+    "email":"user@gmail.com",
+    "password":"Admin@123"
+
+> Response : 
+{
+    "code": 200,
+    "data": {
+        "vechile": {
+            "id": 8,
+            "vechileNo": "123AP1211",
+            "currentLocation": "12 12312 12312 ",
+            "currentLatitude": "123123",
+            "currentLongitude": "1231231",
+            "updatedAt": "2022-09-09T11:53:06.896Z",
+            "createdAt": "2022-09-09T11:53:06.896Z"
+        }
+    },
+    "success": true
+}
+```
